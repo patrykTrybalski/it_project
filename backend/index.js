@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
-const {Todo} = require('./models/todo');
+const {Plant} = require('./models/plant');
 const {URL, DB_NAME} = require('./config/DB');
 
 const app = express();
@@ -16,17 +16,17 @@ app.get('/', (req, res) => {
     res.send('hello world')
 });
 
-app.post('/todo', (req, res) => {
+app.post('/plant', (req, res) => {
     Promise.resolve()
-        .then(() => new Todo(req.body))
+        .then(() => new Plant(req.body))
         .then(todo => todo.save())
         .then(todo => res.send(todo))
         .catch(err => res.send(err));
 });
 
-app.get('/todo', (req, res) => {
+app.get('/plant', (req, res) => {
     Promise.resolve()
-        .then(() => Todo.find({}))
+        .then(() => Plant.find({}))
         .then(todo => res.send(todo))
         .catch(err => res.send(err));
 });
